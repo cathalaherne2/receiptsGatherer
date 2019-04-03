@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -33,12 +34,17 @@ public class ViewListContents extends AppCompatActivity implements AdapterView.O
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.viewcontents_layout);
+        listView = findViewById(R.id.listView);
+        final Spinner spinner = findViewById(R.id.filterSpinner);
 
         filter = getIntent().getStringExtra("SHOPS_TO_GET");
 
         myDB = new DatabaseHelper(this);
-        final Spinner spinner = findViewById(R.id.filterSpinner);
+
 
         List<String> categories = new ArrayList<>();
         categories.add("Filter newest first");
@@ -84,7 +90,7 @@ public class ViewListContents extends AppCompatActivity implements AdapterView.O
                 final User instanceOfUrl = (User) listView.getItemAtPosition(position);
                 AlertDialog.Builder adb = new AlertDialog.Builder(ViewListContents.this);
                 adb.setTitle("Delete?");
-                String name = instanceOfUrl.getFirstName();
+                String name = instanceOfUrl.getShopName();
                 adb.setMessage("Are you sure you want to delete " + name);
                 adb.setNegativeButton("Cancel", null);
                 adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
@@ -119,14 +125,16 @@ public class ViewListContents extends AppCompatActivity implements AdapterView.O
         listView.setAdapter(adapter);
         int i = 0;
         while (data.moveToNext()) {
-            user = new User(data.getString(1), data.getString(2), data.getString(3));
+            user = new User(data.getString(1), data.getString(2), data.getString(3),data.getString(4),data.getString(5));
             userList.add(i, user);
             System.out.println(data.getString(1) + " " + data.getString(2));
-            System.out.println(userList.get(i).getFirstName());
+            System.out.println(userList.get(i).getShopName());
             i++;
-            adapter.notifyDataSetChanged();
+
         }
+        adapter.notifyDataSetChanged();
     }
+
     @Override
     public void onItemSelected (AdapterView < ? > parent, View view,int position, long id){
         // On selecting a spinner item
@@ -145,7 +153,6 @@ public class ViewListContents extends AppCompatActivity implements AdapterView.O
                 String query = " ORDER BY SHOPTOTAL DESC;";
                 Cursor data = myDB.getListContents(query, filter);
                 orderList(data);
-                final ThreeColumn_ListAdapter adapter = new ThreeColumn_ListAdapter(this, R.layout.list_adapter_view, userList);
                 listView = findViewById(R.id.listView);
                 break;
             }
@@ -154,7 +161,6 @@ public class ViewListContents extends AppCompatActivity implements AdapterView.O
                 String query = " ORDER BY SHOPNAME ASC;";
                 Cursor data = myDB.getListContents(query, filter);
                 orderList(data);
-                final ThreeColumn_ListAdapter adapter = new ThreeColumn_ListAdapter(this, R.layout.list_adapter_view, userList);
                 listView = findViewById(R.id.listView);
                 break;
             }
@@ -162,7 +168,6 @@ public class ViewListContents extends AppCompatActivity implements AdapterView.O
                 String query = " ORDER BY LOCATIONOFURL DESC;";
                 Cursor data = myDB.getListContents(query, filter);
                 orderList(data);
-                final ThreeColumn_ListAdapter adapter = new ThreeColumn_ListAdapter(this, R.layout.list_adapter_view, userList);
                 listView = findViewById(R.id.listView);
                 break;
             }
@@ -170,6 +175,7 @@ public class ViewListContents extends AppCompatActivity implements AdapterView.O
         Toast.makeText(ViewListContents.this, "Selected" + item, Toast.LENGTH_LONG).show();
 
     }
+
     public void onNothingSelected (AdapterView < ? > arg0){
     }
 }

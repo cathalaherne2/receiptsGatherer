@@ -50,7 +50,7 @@ public class ViewPieChart extends AppCompatActivity implements OnChartValueSelec
 
 
         pieChart.setDrawHoleEnabled(true);
-        pieChart.setHoleColor(Color.WHITE);
+        pieChart.setHoleColor(Color.parseColor("#303030"));
 
         pieChart.setTransparentCircleColor(Color.WHITE);
         pieChart.setTransparentCircleAlpha(110);
@@ -76,6 +76,7 @@ public class ViewPieChart extends AppCompatActivity implements OnChartValueSelec
         pieChart.setEntryLabelTextSize(12f);
 
         Legend l = pieChart.getLegend();
+        l.setTextColor(Color.parseColor("#fefefe"));
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         l.setOrientation(Legend.LegendOrientation.VERTICAL);
@@ -166,5 +167,4 @@ public class ViewPieChart extends AppCompatActivity implements OnChartValueSelec
     public void onNothingSelected() {
         Log.i("PieChart", "nothing selected");
     }
-
 }

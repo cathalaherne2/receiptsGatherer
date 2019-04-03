@@ -70,6 +70,7 @@ public class CreatePdf{
             String message3 = "null";
             String barcode = "null";
             String shopLogo = "null";
+            String timeDate = "null";
 
 
             try {
@@ -81,6 +82,7 @@ public class CreatePdf{
                 message3 = object.getString("message3");
                 barcode = object.getString("barcode");
                 shopLogo = object.getString("shopLogo");
+                timeDate = object.getString("timeDate");
             } catch (Exception e) {
                 Log.e("my app", "the json cannot be converted");
             }

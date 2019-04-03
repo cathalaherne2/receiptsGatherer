@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements NfcAdapter.Create
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         btnAdd = findViewById(R.id.btnAdd);
         btnView = findViewById(R.id.btnView);
@@ -71,8 +74,8 @@ public class MainActivity extends AppCompatActivity implements NfcAdapter.Create
         });
     }
 
-    public void AddData(String firstName,String lastName,String url){
-        boolean insertData = myDB.addData(firstName,lastName+" ",url);
+    public void AddData(String firstName,String lastName,String url, String date, String logo){
+        boolean insertData = myDB.addData(firstName,lastName+" ",url, date, logo);
 
         if(insertData)
             Toast.makeText(MainActivity.this, "Successfully Entered Data!", Toast.LENGTH_LONG).show();
@@ -126,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements NfcAdapter.Create
                 requestPermissions(permissions, STORAGE_CODE);
             } else fileName = createPdf.pdfSave(niceFormattedString);
             if(information[0].length() != 0 && information[1].length() != 0){
-                AddData(information[0],information[1],fileName);
+                AddData(information[0],information[1],fileName,information[2],information[3]);
             }
         }
     }

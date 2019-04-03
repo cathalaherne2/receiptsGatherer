@@ -23,18 +23,25 @@ public class JsonConverter {
 
         String shopName = "null";
         String shopTotal = "null";
+        String date = "null";
+        String logo = "null.jpg";
         try {
             JSONObject object = Json.getJSONObject("shopInfo");
             shopName = object.getString("shopName");
+            logo = object.getString("shopLogo");
+            date = object.getString("timeDate");
             System.out.println(shopName);
             shopTotal = Json.getString("Total");
             System.out.println(shopTotal);
         } catch (Exception e) {
             Log.e("my app", "the json cannot be converted");
         }
-        String[] info = new String[2];
+        String[] info = new String[4];
         info[0] = shopName;
         info[1] = shopTotal;
+        info[2] = date;
+        info[3] = logo;
+
         return info;
     }
 }

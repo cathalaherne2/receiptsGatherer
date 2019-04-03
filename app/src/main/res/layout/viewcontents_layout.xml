@@ -2,26 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#212121">
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="@layout/divider"
         android:dividerHeight="10dp"
+        android:divider="@null"
         android:layout_weight="1" />
 
     <Spinner
         android:id="@+id/filterSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textAllCaps="false"
-        android:text="Filter"
-        android:layerType="software"
+        android:layout_weight="0"
         android:background="@android:drawable/btn_dropdown"
+        android:layerType="software"
         android:spinnerMode="dropdown"
-        android:layout_weight="0"/>
+        android:text="Filter"
+        android:textAllCaps="false"
+        android:textSize="20sp" />
 
 </LinearLayout>

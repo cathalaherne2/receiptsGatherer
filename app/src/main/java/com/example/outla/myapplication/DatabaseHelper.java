@@ -18,6 +18,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COL2 = "SHOPNAME";
     private static final String COL3 = "SHOPTOTAL";
     private static final String COL4 = "LOCATIONOFURL";
+    private static final String COL5 = "LOGO";
+    private static final String COL6 = "DATE";
 
 
 
@@ -28,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                " SHOPNAME TEXT, SHOPTOTAL TEXT, LOCATIONOFURL TEXT)";
+                " SHOPNAME TEXT, SHOPTOTAL TEXT, LOCATIONOFURL TEXT, LOGO TEXT, DATE TEXT)";
         db.execSQL(createTable);
     }
 
@@ -65,12 +67,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + request +" "+  filter, null);
     }
 
-    public boolean addData(String sName, String sValue, String locationOfPdf) {
+    public boolean addData(String sName, String sValue, String locationOfPdf, String logo, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2, sName);
         contentValues.put(COL3, sValue);
         contentValues.put(COL4, locationOfPdf);
+        contentValues.put(COL5, logo);
+        contentValues.put(COL6, date);
 
 
         long result = db.insert(TABLE_NAME, null, contentValues);

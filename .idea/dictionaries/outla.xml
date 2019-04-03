@@ -2,9 +2,11 @@
   <dictionary name="outla">
     <words>
       <w>entrys</w>
+      <w>locationofurl</w>
       <w>ndef</w>
       <w>outla</w>
       <w>shopname</w>
+      <w>shoptotal</w>
     </words>
   </dictionary>
 </component>
