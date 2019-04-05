@@ -9,7 +9,7 @@ public class User {
     private String TimeDate;
     private String Logo;
 
-    public User(String shopName, String total, String url, String timeDate, String logo) {
+    public User(String shopName, String total, String url,String logo ,String timeDate ) {
         ShopName= shopName;
         Total = total;
         URL = url;

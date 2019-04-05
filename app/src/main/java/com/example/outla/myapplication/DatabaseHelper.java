@@ -12,14 +12,14 @@ import static android.content.ContentValues.TAG;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "receipts.db";
+    private static final String DATABASE_NAME = "receipts4.db";
     private static final String TABLE_NAME = "receipts_data";
     private static final String COL1 = "ID";
     private static final String COL2 = "SHOPNAME";
     private static final String COL3 = "SHOPTOTAL";
     private static final String COL4 = "LOCATIONOFURL";
     private static final String COL5 = "LOGO";
-    private static final String COL6 = "DATE";
+    private static final String COL6 = "DATEMADE";
 
 
 
@@ -30,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                " SHOPNAME TEXT, SHOPTOTAL TEXT, LOCATIONOFURL TEXT, LOGO TEXT, DATE TEXT)";
+                " SHOPNAME TEXT, SHOPTOTAL TEXT, LOCATIONOFURL TEXT, LOGO TEXT, DATEMADE TEXT)";
         db.execSQL(createTable);
     }
 
@@ -64,7 +64,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getListContents(String filter,String request) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + request +" "+  filter, null);
+        return db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + request +  filter, null);
     }
 
     public boolean addData(String sName, String sValue, String locationOfPdf, String logo, String date) {

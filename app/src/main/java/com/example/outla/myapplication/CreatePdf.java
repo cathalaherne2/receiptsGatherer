@@ -132,6 +132,7 @@ public class CreatePdf{
         return contents;
 
     }
+
     public PdfPTable  itemsPurchased(String names[],float prices[]){
 
 
@@ -210,7 +211,6 @@ public class CreatePdf{
         Logo.addCell(headCell);
         return Logo;
     }
-
 
     private void pdfEditor() {
         try {
@@ -294,6 +294,7 @@ public class CreatePdf{
         return itemPrices;
 
     }
+
     public String[] itemsNamesInReceipt(JSONObject items){
 
         String[] itemNames = new String[items.length()];
@@ -317,6 +318,5 @@ public class CreatePdf{
         return itemNames;
 
     }
-
 
 }

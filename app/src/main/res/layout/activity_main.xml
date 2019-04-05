@@ -15,7 +15,7 @@
         android:layout_marginTop="140dp"
         android:layout_weight="1"
         android:background="@drawable/android_button"
-        android:text="Chart" />
+        android:text="Breakdown of spending" />
 
     <Button
         android:id="@+id/btnAdd"
@@ -24,7 +24,7 @@
         android:layout_centerInParent="true"
         android:layout_weight="1"
         android:background="@drawable/android_button"
-        android:text="Add" />
+        android:text="Add Manual Receipt" />
 
     <Button
         android:id="@+id/btnView"
@@ -35,5 +35,5 @@
         android:layout_marginBottom="140dp"
         android:layout_weight="1"
         android:background="@drawable/android_button"
-        android:text="View" />
+        android:text="View All Receipts" />
 </RelativeLayout>

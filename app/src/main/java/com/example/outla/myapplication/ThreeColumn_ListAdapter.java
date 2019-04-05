@@ -65,7 +65,7 @@ public class ThreeColumn_ListAdapter extends ArrayAdapter<User> {
                 shopName.setText((user.getShopName()));
             }
             if (timeDate != null) {
-                timeDate.setText((user.getShopName()));
+                timeDate.setText((user.getTimeDate()));
             }
         }
 

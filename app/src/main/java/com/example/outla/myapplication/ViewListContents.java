@@ -107,7 +107,7 @@ public class ViewListContents extends AppCompatActivity implements AdapterView.O
                         }
                         myDB.deleteFile(URL);
                         adapter.remove(instanceOfUrl);
-                        String query = " ORDER BY LOCATIONOFURL DESC;";
+                        String query = " ORDER BY ID DESC;";
                         Cursor data = myDB.getListContents(query, filter);
                         orderList(data);
                     }
@@ -142,7 +142,7 @@ public class ViewListContents extends AppCompatActivity implements AdapterView.O
         switch (item) {
             case "Filter by oldest first": {
 
-                String query = " ORDER BY LOCATIONOFURL ASC;";
+                String query = " ORDER BY ID ASC;";
                 Cursor data = myDB.getListContents(query, filter);
                 orderList(data);
 
@@ -165,7 +165,7 @@ public class ViewListContents extends AppCompatActivity implements AdapterView.O
                 break;
             }
             default: {
-                String query = " ORDER BY LOCATIONOFURL DESC;";
+                String query = " ORDER BY ID DESC;";
                 Cursor data = myDB.getListContents(query, filter);
                 orderList(data);
                 listView = findViewById(R.id.listView);
