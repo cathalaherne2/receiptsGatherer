@@ -1,16 +1,15 @@
 package com.example.outla.myapplication;
 
 
-
-public class User {
+public class Receipt {
     private String Total;
     private String ShopName;
     private String URL;
     private String TimeDate;
     private String Logo;
 
-    public User(String shopName, String total, String url,String logo ,String timeDate ) {
-        ShopName= shopName;
+    public Receipt(String shopName, String total, String url, String logo, String timeDate) {
+        ShopName = shopName;
         Total = total;
         URL = url;
         TimeDate = timeDate;

@@ -16,16 +16,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 
-public class ThreeColumn_ListAdapter extends ArrayAdapter<User> {
+public class ThreeColumn_ListAdapter extends ArrayAdapter<Receipt> {
 
     private static String mFolder = Environment.getExternalStorageDirectory()+"/"+"pdf_viewer"+"/";
     private LayoutInflater mInflater;
-    private ArrayList<User> users;
+    private ArrayList<Receipt> receipts;
     private int mViewResourceId;
 
-    public ThreeColumn_ListAdapter(Context context, int textViewResourceId, ArrayList<User> users) {
-        super(context, textViewResourceId, users);
-        this.users = users;
+    public ThreeColumn_ListAdapter(Context context, int textViewResourceId, ArrayList<Receipt> receipts) {
+        super(context, textViewResourceId, receipts);
+        this.receipts = receipts;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mViewResourceId = textViewResourceId;
     }
@@ -34,16 +34,16 @@ public class ThreeColumn_ListAdapter extends ArrayAdapter<User> {
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = mInflater.inflate(mViewResourceId, null);
 
-        User user = users.get(position);
+        Receipt receipt = receipts.get(position);
 
-        if (user != null) {
+        if (receipt != null) {
             ImageView logo =  convertView.findViewById(R.id.logo);
             TextView total = (TextView) convertView.findViewById(R.id.total);
             TextView shopName = (TextView) convertView.findViewById(R.id.shopName);
             TextView timeDate = (TextView) convertView.findViewById(R.id.timeDate);
             if (logo != null) {
 
-                String logoString = user.getLogo();
+                String logoString = receipt.getLogo();
                 File f= new File(mFolder, logoString);
 
                 Bitmap bmp = null;
@@ -58,14 +58,14 @@ public class ThreeColumn_ListAdapter extends ArrayAdapter<User> {
                 logo.setImageBitmap(bmp);
             }
             if (total != null) {
-                String euroTotal = "€"+user.getTotal();
+                String euroTotal = "€"+receipt.getTotal();
                 total.setText((euroTotal));
             }
             if (shopName != null) {
-                shopName.setText((user.getShopName()));
+                shopName.setText((receipt.getShopName()));
             }
             if (timeDate != null) {
-                timeDate.setText((user.getTimeDate()));
+                timeDate.setText((receipt.getTimeDate()));
             }
         }
 

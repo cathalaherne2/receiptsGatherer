@@ -25,9 +25,9 @@ public class ViewListContents extends AppCompatActivity implements AdapterView.O
 
     private static String mFolder = Environment.getExternalStorageDirectory() + "/" + "pdf_viewer" + "/";
     DatabaseHelper myDB;
-    ArrayList<User> userList;
+    ArrayList<Receipt> receiptList;
     ListView listView;
-    User user;
+    Receipt receipt;
     public String filter;
 
 
@@ -58,7 +58,7 @@ public class ViewListContents extends AppCompatActivity implements AdapterView.O
         spinner.setAdapter(dataAdapter);
         spinner.setOnItemSelectedListener(this);
 
-        userList = new ArrayList<>();
+        receiptList = new ArrayList<>();
         Cursor data = myDB.getListContents(";", filter);
         int numRows = data.getCount();
         if (numRows == 0) {
@@ -66,13 +66,13 @@ public class ViewListContents extends AppCompatActivity implements AdapterView.O
         }else{
             orderList(data);
         }
-        final ThreeColumn_ListAdapter adapter = new ThreeColumn_ListAdapter(this, R.layout.list_adapter_view, userList);
+        final ThreeColumn_ListAdapter adapter = new ThreeColumn_ListAdapter(this, R.layout.list_adapter_view, receiptList);
         listView = findViewById(R.id.listView);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long arg) {
-                User url = (User) listView.getItemAtPosition(position);
+                Receipt url = (Receipt) listView.getItemAtPosition(position);
                 String URL = url.getURL();
                 Intent intent = new Intent(ViewListContents.this, ViewPdf.class);
                 intent.putExtra("URL_TO_VISIT", URL);
@@ -87,7 +87,7 @@ public class ViewListContents extends AppCompatActivity implements AdapterView.O
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long arg) {
 
 
-                final User instanceOfUrl = (User) listView.getItemAtPosition(position);
+                final Receipt instanceOfUrl = (Receipt) listView.getItemAtPosition(position);
                 AlertDialog.Builder adb = new AlertDialog.Builder(ViewListContents.this);
                 adb.setTitle("Delete?");
                 String name = instanceOfUrl.getShopName();
@@ -119,16 +119,16 @@ public class ViewListContents extends AppCompatActivity implements AdapterView.O
     }
 
     private void orderList(Cursor data) {
-        userList.clear();
-        final ThreeColumn_ListAdapter adapter = new ThreeColumn_ListAdapter(this, R.layout.list_adapter_view, userList);
+        receiptList.clear();
+        final ThreeColumn_ListAdapter adapter = new ThreeColumn_ListAdapter(this, R.layout.list_adapter_view, receiptList);
         listView = findViewById(R.id.listView);
         listView.setAdapter(adapter);
         int i = 0;
         while (data.moveToNext()) {
-            user = new User(data.getString(1), data.getString(2), data.getString(3),data.getString(4),data.getString(5));
-            userList.add(i, user);
+            receipt = new Receipt(data.getString(1), data.getString(2), data.getString(3),data.getString(4),data.getString(5));
+            receiptList.add(i, receipt);
             System.out.println(data.getString(1) + " " + data.getString(2));
-            System.out.println(userList.get(i).getShopName());
+            System.out.println(receiptList.get(i).getShopName());
             i++;
 
         }

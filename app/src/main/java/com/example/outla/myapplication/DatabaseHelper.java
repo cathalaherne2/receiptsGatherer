@@ -12,7 +12,7 @@ import static android.content.ContentValues.TAG;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "receipts4.db";
+    private static final String DATABASE_NAME = "receipts6.db";
     private static final String TABLE_NAME = "receipts_data";
     private static final String COL1 = "ID";
     private static final String COL2 = "SHOPNAME";

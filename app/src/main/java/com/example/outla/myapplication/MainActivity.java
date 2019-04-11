@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements NfcAdapter.Create
     }
 
     public void AddData(String firstName,String lastName,String url, String date, String logo){
-        boolean insertData = myDB.addData(firstName,lastName+" ",url, date, logo);
+        boolean insertData = myDB.addData(firstName,lastName+" ",url, logo,date);
 
         if(insertData)
             Toast.makeText(MainActivity.this, "Successfully Entered Data!", Toast.LENGTH_LONG).show();
@@ -159,7 +159,9 @@ public class MainActivity extends AppCompatActivity implements NfcAdapter.Create
             if(information[0].length() != 0 && information[1].length() != 0){
                 AddData(information[0],information[1],fileName,information[2],information[3]);
             }
+
         }
+        intent.setAction("android.intent.action.MAIN");
     }
 
     @Override
